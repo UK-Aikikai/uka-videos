@@ -2,21 +2,28 @@
     <v-timeline-item>
         <template v-slot:icon>
             <v-avatar>
-                <span>{{ video.date }}</span>
+                <span></span>
             </v-avatar>
         </template>
         <template v-slot:opposite>
-            <span>{{ video.title }}</span>
+            <span>{{ video.date }}</span>
         </template>
         <v-card class="elevation-2">
             <v-card-title class="headline">
 
             </v-card-title>
             <v-card-subtitle>
-                Title
+                {{ video.title }}
             </v-card-subtitle>
-            <v-card-text>
-                Description
+            <v-card-text class="white text--primary">
+                <p>An image placeholder...</p>
+                <v-btn
+                        :color="btnColour()"
+                        class="mx-0"
+                        outlined
+                >
+                    Play
+                </v-btn>
             </v-card-text>
         </v-card>
     </v-timeline-item>
@@ -27,15 +34,11 @@
     export default {
         props: ["video"],
         methods: {
-          logs() {
-              console.log(this.video);
-              return 'stuff';
-          }
+            btnColour() {
+                return 'green lighten-1';
+            },
         },
         computed: {
-            launchDate() {
-                return 'n/a';
-            },
         },
     };
 </script>

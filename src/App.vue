@@ -50,6 +50,8 @@
                         // console.log(video);
                         this.videos.push(video);
                     }
+
+                    this.videos.reverse();
                 });
         },
         mounted() {
