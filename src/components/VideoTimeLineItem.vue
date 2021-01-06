@@ -37,6 +37,9 @@
             btnColour() {
                 return 'green lighten-1';
             },
+            filterTimeline() {
+                console.log('boo!');
+            },
         },
         computed: {
         },

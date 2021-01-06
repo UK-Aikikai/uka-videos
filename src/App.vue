@@ -1,13 +1,7 @@
 <template>
-    <v-app>
-        <v-app-bar app color="primary" dark>
-            <div class="d-flex align-center">
-                <h2> UKA Videos </h2>
-            </div>
+    <v-app class="grey lighten-4">
 
-            <v-spacer></v-spacer>
-
-        </v-app-bar>
+        <Searchbar />
 
         <v-main>
             <v-container>
@@ -27,17 +21,21 @@
 
     import axios from "axios";
     // import LaunchTimelineItem from "./components/LaunchTimeLineItem.vue"
-    import VideoTimeLineItem from "./components/VideoTimeLineItem.vue"
+    // import VideoTimeLineItem from "./components/VideoTimeLineItem.vue"
+    import VideoTimeLineItem from "@/components/VideoTimeLineItem";
+    import Searchbar from "@/components/Searchbar";
 
     export default {
         name: "App",
 
         components: {
-            VideoTimeLineItem
+            VideoTimeLineItem,
+            Searchbar
         },
 
         data: () => ({
             videos: [],
+            filtered: [],
         }),
 
         created() {
