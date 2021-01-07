@@ -5,9 +5,9 @@
 
         <v-main>
             <v-container>
-                <v-timeline v-if="videos.length > 0">
+                <v-timeline v-if="this.$store.getters.getVideos.length > 0">
                     <VideoTimeLineItem
-                            v-for="video in videos"
+                            v-for="video in this.$store.getters.getVideos"
                             :key="video.date"
                             :video="video"
                     />
@@ -20,8 +20,6 @@
 <script>
 
     import axios from "axios";
-    // import LaunchTimelineItem from "./components/LaunchTimeLineItem.vue"
-    // import VideoTimeLineItem from "./components/VideoTimeLineItem.vue"
     import VideoTimeLineItem from "@/components/VideoTimeLineItem";
     import Searchbar from "@/components/Searchbar";
 
@@ -33,11 +31,6 @@
             Searchbar
         },
 
-        data: () => ({
-            videos: [],
-            filtered: [],
-        }),
-
         created() {
             axios.get('https://raw.githubusercontent.com/pavlakis/api-ukaikikai/master/videos.json')
                 .then(response => {
@@ -46,10 +39,11 @@
                         let video = object[0];
                         video.date = `${key}`;
                         // console.log(video);
-                        this.videos.push(video);
+                        this.$store.commit('addVideo', video);
+                        this.$store.commit('reverseVideoOrder');
                     }
 
-                    this.videos.reverse();
+
                 });
         },
         mounted() {
