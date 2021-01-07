@@ -13,11 +13,9 @@
                         hide-details
                         prepend-icon="mdi-magnify"
                         single-line
+                        v-model="search"
                 ></v-text-field>
 
-                <v-btn text>
-                    Filter
-                </v-btn>
                 <v-btn text>
                     Reset
                 </v-btn>
@@ -29,8 +27,16 @@
 </template>
 
 <script>
-    // v-on:keyup="model.filterTimeline"
     export default {
-
+        computed: {
+            search: {
+                get () {
+                    return this.$store.state.search
+                },
+                set (search) {
+                    this.$store.commit('updateSearchKeyword', search)
+                }
+            }
+        }
     }
 </script>

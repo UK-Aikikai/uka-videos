@@ -6,10 +6,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     search: "",
-    videos: [],
-    filtered: []
+    videos: []
   },
-  // todo - add videos found in search in `filtered`
+
   mutations: {
     addVideo(state, video) {
       state.videos.push(video);
@@ -17,19 +16,27 @@ export default new Vuex.Store({
     reverseVideoOrder() {
       this.state.videos.reverse();
     },
-    resetFilter() {
-      this.state.filtered = [];
-    },
-    filteredList() {
-      return this.video.filter(video => {
-        return video.search.toLowerCase().includes(this.search.toLowerCase())
-      })
+    updateSearchKeyword(state, search) {
+      state.search = search;
     }
   },
   getters: {
-    getVideos: state => {
+    getVideos(state) {
+      let filteredList = state.videos.filter(video => {
+        return video.search.toLowerCase().includes(state.search.toLowerCase())
+      });
+
+      if (filteredList.length > 0) {
+        return filteredList;
+      }
+
       return state.videos;
-      // return state.filtered.length > 0 ? state.filtered : state.videos
+    },
+    filteredList(state) {
+      console.log(state);
+      return state.videos.filter(video => {
+        return video.search.toLowerCase().includes(this.search.toLowerCase())
+      })
     }
   },
   actions: {},

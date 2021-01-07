@@ -30,18 +30,12 @@
 </template>
 
 <script>
-    // import moment from "moment";
     export default {
         props: ["video"],
         methods: {
             btnColour() {
                 return 'green lighten-1';
             },
-            filterTimeline() {
-                console.log('boo!');
-            },
-        },
-        computed: {
-        },
+        }
     };
 </script>
