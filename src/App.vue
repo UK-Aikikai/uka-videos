@@ -38,6 +38,7 @@
                     for (const [key, object] of Object.entries(response.data)) {
                         let video = object[0];
                         video.date = `${key}`;
+                        video.search = video.date + ', ' + video.title + ', ' + video.description;
                         // console.log(video);
                         this.$store.commit('addVideo', video);
                         this.$store.commit('reverseVideoOrder');
