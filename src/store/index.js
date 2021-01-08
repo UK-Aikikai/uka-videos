@@ -13,8 +13,10 @@ export default new Vuex.Store({
     addVideo(state, video) {
       state.videos.push(video);
     },
-    reverseVideoOrder() {
-      this.state.videos.reverse();
+    sortOrderByDate() {
+      this.state.videos.sort(function(video1, video2) {
+        return video2.date - video1.date;
+      });
     },
     updateSearchKeyword(state, search) {
       state.search = search;
@@ -33,7 +35,6 @@ export default new Vuex.Store({
       return state.videos;
     },
     filteredList(state) {
-      console.log(state);
       return state.videos.filter(video => {
         return video.search.toLowerCase().includes(this.search.toLowerCase());
       });

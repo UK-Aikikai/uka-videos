@@ -48,7 +48,7 @@ export default {
           // todo - create object manually with Japan YouTube video. (after initial deployment, change the payload in GitHub to have that too)
           // console.log(video);
           this.$store.commit("addVideo", video);
-          this.$store.commit("reverseVideoOrder");
+          this.$store.commit("sortOrderByDate");
         }
       });
   },
