@@ -10,28 +10,90 @@
         </template>
         <v-card class="elevation-2">
             <v-card-title class="headline">
-
+                {{ video.title }}
             </v-card-title>
             <v-card-subtitle>
-                {{ video.title }}
+
             </v-card-subtitle>
             <v-card-text class="white text--primary">
-                <p>An image placeholder...</p>
-                <v-btn
-                        :color="btnColour()"
-                        class="mx-0"
-                        outlined
-                >
-                    Play
-                </v-btn>
+                <p>{{ video.description }}</p>
+
+
+                <v-row justify="center">
+                    <v-dialog
+                            v-model="dialog"
+                            fullscreen
+                            hide-overlay
+                            transition="dialog-bottom-transition"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-btn
+                                    color="primary"
+                                    dark
+                                    v-bind="attrs"
+                                    v-on="on"
+                            >
+                                Play
+                            </v-btn>
+                        </template>
+                        <v-card>
+                            <v-toolbar
+                                    dark
+                                    color="primary"
+                            >
+                                <v-btn
+                                        icon
+                                        dark
+                                        @click="dialog = false"
+                                >
+                                    <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                                <v-toolbar-title>UK Aikikai {{ video.date }}</v-toolbar-title>
+                            </v-toolbar>
+                            <v-list
+                                    three-line
+                                    subheader
+                            >
+                                <v-list-item>
+                                    <v-list-item-content>
+                                        <v-list-item-title>{{ video.title }}</v-list-item-title>
+                                        <v-list-item-subtitle>{{ video.description }}</v-list-item-subtitle>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </v-list>
+                            <v-divider></v-divider>
+                            <v-list
+                                    three-line
+                                    subheader
+                            >
+                                <v-subheader>Video</v-subheader>
+
+                                <div v-if="video.player_type === 'vimeo'" class="align-content-center align-center">
+                                    <iframe class="align-content-center" v-if="dialog" :src="video.player" width="640" height="359" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                </div>
+                            </v-list>
+                        </v-card>
+                    </v-dialog>
+                </v-row>
+
+
+
             </v-card-text>
         </v-card>
     </v-timeline-item>
 </template>
 
 <script>
+
     export default {
         props: ["video"],
+        data () {
+            return {
+                dialog: false,
+            }
+        },
+        components: {
+        },
         methods: {
             btnColour() {
                 return 'green lighten-1';

@@ -37,13 +37,14 @@
                     for (const [key, object] of Object.entries(response.data)) {
                         let video = object[0];
                         video.date = `${key}`;
+                        video.player_type = 'vimeo';
                         video.search = "" + video.date + ', ' + video.title + ', ' + video.description;
+                        // todo - add player_type e.g. youtube or vimeo with a component to decide on the correct one
+                        // todo - create object manually with Japan YouTube video. (after initial deployment, change the payload in GitHub to have that too)
                         // console.log(video);
                         this.$store.commit('addVideo', video);
                         this.$store.commit('reverseVideoOrder');
                     }
-
-
                 });
         },
         mounted() {

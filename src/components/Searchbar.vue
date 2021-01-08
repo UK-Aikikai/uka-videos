@@ -16,10 +16,6 @@
                         v-model="search"
                 ></v-text-field>
 
-                <v-btn text>
-                    Reset
-                </v-btn>
-
             </v-toolbar>
         </v-app-bar>
 
