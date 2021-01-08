@@ -4,7 +4,10 @@
 
     <v-main>
       <v-container>
-        <v-timeline v-if="this.$store.getters.getVideos.length > 0">
+        <v-timeline
+                v-if="this.$store.getters.getVideos.length > 0"
+                :dense="$vuetify.breakpoint.smAndDown"
+        >
           <VideoTimeLineItem
             v-for="video in this.$store.getters.getVideos"
             :key="video.date"
