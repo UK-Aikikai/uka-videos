@@ -23,7 +23,7 @@ export default new Vuex.Store({
   getters: {
     getVideos(state) {
       let filteredList = state.videos.filter(video => {
-        return video.search.toLowerCase().includes(state.search.toLowerCase())
+        return video.search.toLowerCase().includes(state.search.toLowerCase());
       });
 
       if (filteredList.length > 0) {
@@ -35,8 +35,8 @@ export default new Vuex.Store({
     filteredList(state) {
       console.log(state);
       return state.videos.filter(video => {
-        return video.search.toLowerCase().includes(this.search.toLowerCase())
-      })
+        return video.search.toLowerCase().includes(this.search.toLowerCase());
+      });
     }
   },
   actions: {},
