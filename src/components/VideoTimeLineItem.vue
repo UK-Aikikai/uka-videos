@@ -28,7 +28,12 @@
                     >
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
+                                    block
+                                    class="mt-3 mb-3"
+                                    large
                                     color="primary"
+                                    outlined
+                                    rounded
                                     dark
                                     v-bind="attrs"
                                     v-on="on"
@@ -67,7 +72,7 @@
                                     subheader
                             >
 
-                                <div v-if="video.player_type === 'vimeo'" class="d-flex justify-center mt-3">
+                                <div v-if="video.player_type === 'vimeo'" class="d-flex fill-height justify-center mt-3">
                                     <iframe v-if="dialog" :src="video.player" width="640" height="359" allow="autoplay; fullscreen" allowfullscreen></iframe>
                                 </div>
                             </v-list>
