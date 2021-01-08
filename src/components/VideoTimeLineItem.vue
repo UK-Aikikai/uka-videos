@@ -66,10 +66,9 @@
                                     three-line
                                     subheader
                             >
-                                <v-subheader>Video</v-subheader>
 
-                                <div v-if="video.player_type === 'vimeo'" class="align-content-center align-center">
-                                    <iframe class="align-content-center" v-if="dialog" :src="video.player" width="640" height="359" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                <div v-if="video.player_type === 'vimeo'" class="d-flex justify-center mt-3">
+                                    <iframe v-if="dialog" :src="video.player" width="640" height="359" allow="autoplay; fullscreen" allowfullscreen></iframe>
                                 </div>
                             </v-list>
                         </v-card>
