@@ -14,6 +14,7 @@
           prepend-icon="mdi-magnify"
           single-line
           v-model="search"
+          placeholder="Search..."
         ></v-text-field>
       </v-toolbar>
     </v-app-bar>
