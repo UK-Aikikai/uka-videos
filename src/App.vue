@@ -44,12 +44,22 @@ export default {
           video.player_type = "vimeo";
           video.search =
             "" + video.date + ", " + video.title + ", " + video.description;
-          // todo - add player_type e.g. youtube or vimeo with a component to decide on the correct one
           // todo - create object manually with Japan YouTube video. (after initial deployment, change the payload in GitHub to have that too)
-          // console.log(video);
+          this.$store.commit("addVideo", video);
+        }
+
+          let video = {};
+          video.date = 2019;
+          video.title = "57th All Japan Aikido";
+          video.description = "Demonstration by the  United Kingdom Aikikai Delegation. Including Gordon Jones shihan, Philip Smith Shihan, Alan Smith, Guy Needler, Neil Mould";
+          video.player_type = "youtube";
+          video.player = "https://www.youtube.com/embed/68s7VOswctU"
+
+          video.search =
+              "" + video.date + ", " + video.title + ", " + video.description;
+
           this.$store.commit("addVideo", video);
           this.$store.commit("sortOrderByDate");
-        }
       });
   },
   mounted() {}

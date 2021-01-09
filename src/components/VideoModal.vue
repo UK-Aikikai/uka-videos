@@ -52,14 +52,7 @@
             ></iframe>
           </div>
           <div v-if="isYouTube" class="d-flex fill-height justify-center mt-5">
-            <iframe
-              width="560"
-              height="315"
-              :src="video.player"
-              frameborder="0"
-              allow="autoplay; encrypted-media"
-              allowfullscreen
-            ></iframe>
+              <iframe width="560" height="315" :src="video.player" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </v-list>
       </v-card>
