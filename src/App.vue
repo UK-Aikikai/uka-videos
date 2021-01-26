@@ -9,8 +9,8 @@
           :dense="$vuetify.breakpoint.smAndDown"
         >
           <VideoTimeLineItem
-            v-for="video in this.$store.getters.getVideos"
-            :key="video.date"
+            v-for="(video, index) in this.$store.getters.getVideos"
+            :key="index"
             :video="video"
           />
         </v-timeline>
@@ -92,43 +92,33 @@ export default {
             }
         };
     },
-  components: {
-    VideoTimeLineItem,
-    Searchbar
-  },
+    components: {
+        VideoTimeLineItem,
+        Searchbar
+    },
 
-  created() {
-    axios
-      .get(
-        "https://raw.githubusercontent.com/pavlakis/api-ukaikikai/master/videos.json"
-      )
-      .then(response => {
-        for (const [key, object] of Object.entries(response.data)) {
-          let video = object[0];
-          video.date = `${key}`;
-          video.player_type = "vimeo";
-          video.search =
-            "" + video.date + ", " + video.title + ", " + video.description;
-          // todo - create object manually with Japan YouTube video. (after initial deployment, change the payload in GitHub to have that too)
-          this.$store.commit("addVideo", video);
-        }
+    methods: {
+      addVideos: function(videoCollection, videoDate) {
+          for (const video of Object.values(videoCollection)) {
+              video.date = videoDate;
+              video.search = "" + video.date + ", " + video.title + ", " + video.description;
+              this.$store.commit("addVideo", video);
+          }
+      }
+    },
 
-        // todo - Allow for multiple entries per year.
+    created() {
+        axios
+          .get(
+            "https://raw.githubusercontent.com/UK-Aikikai/api-ukaikikai/master/videos.json"
+          )
+          .then(response => {
+            for (const [key, object] of Object.entries(response.data)) {
+                this.addVideos(object, `${key}`);
+            }
 
-          let video = {};
-          video.date = 2019;
-          video.title = "57th All Japan Aikido";
-          video.description = "Demonstration by the  United Kingdom Aikikai Delegation. Including Gordon Jones shihan, Philip Smith Shihan, Alan Smith, Guy Needler, Neil Mould";
-          video.player_type = "youtube";
-          video.player = "https://www.youtube.com/embed/68s7VOswctU"
-
-          video.search =
-              "" + video.date + ", " + video.title + ", " + video.description;
-
-          this.$store.commit("addVideo", video);
-          this.$store.commit("sortOrderByDate");
-      });
-  },
-  mounted() {}
+            this.$store.commit("sortOrderByDate");
+          });
+    }
 };
 </script>
